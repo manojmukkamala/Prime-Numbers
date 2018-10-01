@@ -35,3 +35,6 @@ The prime number from 0 to 100 are: 2,
 97
 
 Similarly the query in prime_num.sql file prints the prime numbers between 0 and 1000.
+
+Added a new file to the repository: prime_num_inrange.sql
+</br> This query accepts a range and return the prime numbers within that range. For Ex: Prime Numbers between 100 and 500.
