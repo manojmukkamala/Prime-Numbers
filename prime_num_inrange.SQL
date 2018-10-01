@@ -1,38 +1,31 @@
-DECLARE @UpperLimit INT, @LoweLimit INT
+DECLARE @UpperLimit INT, @LowerLimit INT
 
-SET @UpperLimit = 10000
-SET @LoweLimit = 0
+SET @UpperLimit = 11000
+SET @LowerLimit = 10000
 
 DECLARE @N INT, @P INT
-DECLARE @DUMMY TABLE (Number INT NULL, NotPrimeNum INT NULL)
+DECLARE @Numbers TABLE (Number INT NULL)
+DECLARE @Composite TABLE (Number INT NULL)
 
 SET @P = @UpperLimit
 
-WHILE @P > @LoweLimit
+WHILE @P > @LowerLimit
 	BEGIN
-		INSERT INTO @DUMMY(Number) VALUES (@P)
-		IF (@P <> 2 AND @P%2 = 0) OR (@P IN (0, 1))
+		INSERT INTO @Numbers(Number) VALUES (@P)
+		SET @N = 2
+		WHILE @N <= @UpperLimit/2
 			BEGIN
-				INSERT INTO @DUMMY(NotPrimeNum) VALUES (@P)
-			END
-		ELSE
-			BEGIN
-				SET @N =@P
-				WHILE @N > 1
+				IF ((@P%@N = 0 AND @P <> @N) OR (@P IN (0, 1)))
 					BEGIN
-						IF (@P%@N = 0 AND @P <> @N)
-							BEGIN
-								INSERT INTO @DUMMY(NotPrimeNum) VALUES (@P)
-								BREAK
-							END
-						SET @N = @N - 1
+						INSERT INTO @Composite(Number) VALUES (@P)
+						BREAK
 					END
+				SET @N = @N + 1
 			END
 		SET @P = @P - 1
 	END
 
-SELECT Number AS PrimeNumbers
-FROM @DUMMY 
-WHERE Number NOT IN(SELECT A.Number FROM @DUMMY A INNER JOIN @DUMMY B ON A.Number = B.NotPrimeNum)
-ORDER BY PrimeNumbers
-
+SELECT Number 
+FROM @Numbers
+WHERE Number NOT IN (SELECT Number FROM @Composite)
+ORDER BY Number
