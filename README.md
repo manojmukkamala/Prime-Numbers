@@ -1,4 +1,5 @@
 # Prime-Numbers
+https://en.wikipedia.org/wiki/Prime_number
 This SQL Query gives the primes numbers from 0 to 1000.
 
 The prime numbers from 0 to 10 are:
@@ -33,4 +34,4 @@ The prime number from 0 to 100 are: 2,
 89,
 97
 
-Similarly this query prints the prime numbers between 0 and 1000.
+Similarly the query in prime_num.sql file prints the prime numbers between 0 and 1000.
