@@ -1,5 +1,5 @@
 # Prime-Numbers
-https://en.wikipedia.org/wiki/Prime_number
+What is a prime number:https://en.wikipedia.org/wiki/Prime_number </br/>
 This SQL Query gives the primes numbers from 0 to 1000.
 
 The prime numbers from 0 to 10 are:
